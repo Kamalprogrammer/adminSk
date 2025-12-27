@@ -1,15 +1,24 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Layout from './components/layout/Layout'
+import Default from './pages/Default'
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState('default');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'default':
+        return <Default />;
+      default:
+        return <Default />;
+    }
+  };
 
   return (
-    <>
-    <Layout/>
-    </>
+    <Layout onNavigate={setCurrentPage}>
+      {renderPage()}
+    </Layout>
   )
 }
 

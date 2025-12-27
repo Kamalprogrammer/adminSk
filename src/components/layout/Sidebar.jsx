@@ -17,7 +17,7 @@ import {
   SlidersHorizontal
 } from 'lucide-react';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, onNavigate }) => {
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState({ dashboard: true });
 
@@ -212,6 +212,7 @@ const Sidebar = ({ isOpen }) => {
                       {item.subItems.map((subItem, subIndex) => (
                         <div
                           key={subIndex}
+                          onClick={() => onNavigate && onNavigate(subItem.name.toLowerCase())}
                           className={`
                             flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer 
                             transition-all duration-200 transform hover:translate-x-1
