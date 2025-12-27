@@ -7,8 +7,15 @@ import { FaPlus } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import avatar from "../../public/asset/images/avatar.jpg"
+import DoughtnoutChart from '../components/charts/DoughtnoutChart';
+import TransactionCard from '../components/cards/TransactionCard';
 
-const Default = () => {
+export default function Default() {
+    // Helper to get CSS variable value for Chart.js
+    const getCssVariable = (varName) => {
+        return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    };
+
     const stats = [
         {
             id: 1,
@@ -16,9 +23,9 @@ const Default = () => {
             value: "$3,020",
             percentage: "30.6%",
             isPositive: true,
-            icon: <Wallet size={20} className="text-blue-500" />,
-            iconBg: "bg-blue-50",
-            chartColor: "#3b82f6", // blue-500
+            icon: <Wallet size={20} className="text-[var(--color-chart-blue)]" />,
+            iconBg: "bg-[var(--color-primary-light)]",
+            chartColorVar: "--color-chart-blue",
             chartData: [10, 20, 15, 25, 18, 30, 22, 35, 20, 40, 30, 45],
         },
         {
@@ -27,9 +34,9 @@ const Default = () => {
             value: "290K+",
             percentage: "30.6%",
             isPositive: true,
-            icon: <FileText size={20} className="text-orange-500" />,
-            iconBg: "bg-orange-50",
-            chartColor: "#f97316", // orange-500
+            icon: <FileText size={20} className="text-[var(--color-chart-orange)]" />,
+            iconBg: "bg-[var(--color-warning-light)]",
+            chartColorVar: "--color-chart-orange",
             chartData: [15, 10, 20, 15, 25, 18, 30, 25, 20, 15, 25, 20],
         },
         {
@@ -38,9 +45,9 @@ const Default = () => {
             value: "839",
             percentage: "New",
             isPositive: true,
-            icon: <Calendar size={20} className="text-green-500" />,
-            iconBg: "bg-green-50",
-            chartColor: "#22c55e", // green-500
+            icon: <Calendar size={20} className="text-[var(--color-chart-green)]" />,
+            iconBg: "bg-[var(--color-success-light)]",
+            chartColorVar: "--color-chart-green",
             chartData: [10, 15, 10, 20, 15, 25, 20, 30, 25, 35, 30, 40],
         },
         {
@@ -48,18 +55,166 @@ const Default = () => {
             title: "Download",
             value: "2,067",
             percentage: "30.6%",
-            isPositive: false, // Red arrow in image
-            icon: <Download size={20} className="text-red-500" />,
-            iconBg: "bg-red-50",
-            chartColor: "#ef4444", // red-500
+            isPositive: false,
+            icon: <Download size={20} className="text-[var(--color-chart-red)]" />,
+            iconBg: "bg-[var(--color-danger-light)]",
+            chartColorVar: "--color-chart-red",
             chartData: [20, 15, 25, 20, 30, 25, 35, 30, 40, 35, 45, 40],
         },
     ];
 
+    const transactionsImage1 = [
+        {
+            id: 1,
+            name: "Apple Inc.",
+            short: "AI",
+            reference: "#ABLE-PRO-T00232",
+            amount: 210000,
+            currency: "$",
+            type: "debit",
+            changePercent: -10.6,
+        },
+        {
+            id: 2,
+            name: "Spotify Music",
+            short: "SM",
+            reference: "#ABLE-PRO-T10232",
+            amount: 10000,
+            currency: "-",
+            type: "credit",
+            changePercent: 30.6,
+        },
+        {
+            id: 3,
+            name: "Medium",
+            short: "MD",
+            time: "06:30 pm",
+            amount: 26,
+            currency: "-",
+            type: "neutral",
+            changePercent: 5,
+        },
+        {
+            id: 4,
+            name: "Uber",
+            short: "U",
+            time: "08:40 pm",
+            amount: 210000,
+            currency: "+",
+            type: "credit",
+            changePercent: 10.6,
+        },
+        {
+            id: 5,
+            name: "Ola Cabs",
+            short: "OC",
+            time: "07:40 pm",
+            amount: 210000,
+            currency: "+",
+            type: "credit",
+            changePercent: 10.6,
+        },
+    ]
+    const transactionsImage2 = [
+        {
+            id: 1,
+            name: "Uber",
+            short: "U",
+            time: "08:40 pm",
+            amount: 210000,
+            type: "credit",
+            changePercent: 10.6,
+        },
+        {
+            id: 2,
+            name: "Ola Cabs",
+            short: "OC",
+            time: "07:40 pm",
+            amount: 210000,
+            type: "credit",
+            changePercent: 10.6,
+        },
+        {
+            id: 3,
+            name: "Apple Inc.",
+            short: "AI",
+            reference: "#ABLE-PRO-T00232",
+            amount: 210000,
+            type: "debit",
+            changePercent: -10.6,
+        },
+        {
+            id: 4,
+            name: "Spotify Music",
+            short: "SM",
+            reference: "#ABLE-PRO-T10232",
+            amount: 10000,
+            type: "credit",
+            changePercent: 30.6,
+        },
+        {
+            id: 5,
+            name: "Medium",
+            short: "MD",
+            time: "06:30 pm",
+            amount: 26,
+            type: "neutral",
+            changePercent: 5,
+        },
+    ]
+
+    const transactionsImage3 = [
+        {
+            id: 1,
+            name: "Spotify Music",
+            short: "SM",
+            reference: "#ABLE-PRO-T10232",
+            amount: 10000,
+            type: "credit",
+            changePercent: 30.6,
+        },
+        {
+            id: 2,
+            name: "Medium",
+            short: "MD",
+            time: "06:30 pm",
+            amount: 26,
+            type: "neutral",
+            changePercent: 5,
+        },
+        {
+            id: 3,
+            name: "Uber",
+            short: "U",
+            time: "08:40 pm",
+            amount: 210000,
+            type: "credit",
+            changePercent: 10.6,
+        },
+        {
+            id: 4,
+            name: "Apple Inc.",
+            short: "AI",
+            reference: "#ABLE-PRO-T00232",
+            amount: 210000,
+            type: "debit",
+            changePercent: -10.6,
+        },
+        {
+            id: 5,
+            name: "Ola Cabs",
+            short: "OC",
+            time: "07:40 pm",
+            amount: 210000,
+            type: "credit",
+            changePercent: 10.6,
+        },
+    ];
+
     return (
-        <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+        <div className="p-6 space-y-6 bg-[var(--color-page-bg)] min-h-screen">
             {/* Banner Section */}
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500 to-blue-400 p-8 text-white shadow-lg">
+            <div className="relative overflow-hidden rounded-2xl bg-[image:var(--background-image-banner-gradient)] p-8 text-[var(--color-text-white)] shadow-lg">
                 <div className="relative z-10 max-w-2xl">
                     <h1 className="text-3xl font-bold mb-2">Explore Redesigned Able Pro</h1>
                     <p className="text-blue-100 mb-6 text-sm opacity-90">
@@ -88,26 +243,26 @@ const Default = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat) => (
-                    <div key={stat.id} className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div key={stat.id} className="bg-[var(--color-section-bg)] rounded-xl p-5 shadow-sm border border-[var(--color-border-light)] hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start mb-4">
                             <div className="flex items-center gap-3">
                                 <div className={`p-2.5 rounded-lg ${stat.iconBg}`}>
                                     {stat.icon}
                                 </div>
-                                <span className="font-medium text-gray-700 text-sm">{stat.title}</span>
+                                <span className="font-medium text-[var(--color-text-gray)] text-sm">{stat.title}</span>
                             </div>
-                            <button className="text-gray-400 hover:text-gray-600">
+                            <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
                                 <MoreVertical size={18} />
                             </button>
                         </div>
 
                         <div className="flex items-end justify-between gap-4">
                             <div className="w-1/2">
-                                <BarChart data={stat.chartData} color={stat.chartColor} />
+                                <BarChart data={stat.chartData} color={getCssVariable(stat.chartColorVar)} />
                             </div>
                             <div className="text-right">
-                                <div className="text-xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                                <div className={`text-xs font-medium flex items-center justify-end gap-1 ${stat.isPositive ? 'text-blue-500' : 'text-red-500'}`}>
+                                <div className="text-xl font-bold text-[var(--color-text-black)] mb-1">{stat.value}</div>
+                                <div className={`text-xs font-medium flex items-center justify-end gap-1 ${stat.isPositive ? 'text-[var(--color-primary)]' : 'text-[var(--color-danger)]'}`}>
                                     <span>↗</span> {/* Arrow placeholder */}
                                     {stat.percentage}
                                 </div>
@@ -120,16 +275,16 @@ const Default = () => {
             {/* Chart & Project Section  */}
             <div className='grid lg:grid-cols-[70%_30%] grid-cols-1 gap-6'>
                 {/* Left Column: Repeat Customer Rate Chart */}
-                <div className='bg-white rounded-xl p-6 shadow-sm border border-gray-100'>
+                <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)]'>
                     <div className="flex justify-between items-center mb-6">
-                        <h3 className="text-lg font-semibold text-gray-800">Repeat customer rate</h3>
-                        <button className="text-gray-400 hover:text-gray-600">
+                        <h3 className="text-lg font-semibold text-[var(--color-text-black)]">Repeat customer rate</h3>
+                        <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
                             <MoreVertical size={20} />
                         </button>
                     </div>
                     <div className="flex items-center justify-end gap-2 mb-4">
-                        <span className="text-lg font-bold text-gray-900">5.44%</span>
-                        <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">+2.6%</span>
+                        <span className="text-lg font-bold text-[var(--color-text-black)]">5.44%</span>
+                        <span className="bg-[var(--color-success)] text-[var(--color-text-white)] text-xs px-2 py-0.5 rounded-full font-medium">+2.6%</span>
                     </div>
                     <div className="h-[300px] w-full">
                         <LineChart
@@ -149,47 +304,47 @@ const Default = () => {
                 </div>
 
                 {/* Right Column: Project - Able Pro */}
-                <div className='bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex flex-col h-full relative'>
+                <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)] flex flex-col h-full relative'>
                     <div className="flex justify-between items-center mb-6">
-                        <h3 className="text-lg font-semibold text-gray-800">
-                            <span className="text-blue-600">Project</span> - Able Pro
+                        <h3 className="text-lg font-semibold text-[var(--color-text-black)]">
+                            <span className="text-[var(--color-primary)]">Project</span> - Able Pro
                         </h3>
                     </div>
 
                     <div className="mb-6">
                         <div className="flex justify-between text-sm mb-2">
-                            <span className="text-gray-600">Release v1.2.0</span>
-                            <span className="text-gray-600">70%</span>
+                            <span className="text-[var(--color-text-gray)]">Release v1.2.0</span>
+                            <span className="text-[var(--color-text-gray)]">70%</span>
                         </div>
-                        <div className="w-full bg-blue-100 rounded-full h-1.5">
-                            <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: '70%' }}></div>
+                        <div className="w-full bg-[var(--color-primary-light)] rounded-full h-1.5">
+                            <div className="bg-[var(--color-primary)] h-1.5 rounded-full" style={{ width: '70%' }}></div>
                         </div>
                     </div>
 
                     <div className="space-y-4 flex-1">
                         <div className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-orange-400"></span>
-                            <span className="text-gray-600 text-sm">Horizontal Layout</span>
-                            <span className="ml-auto bg-gray-100 text-gray-500 text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+                            <span className="w-2 h-2 rounded-full bg-[var(--color-warning)]"></span>
+                            <span className="text-[var(--color-text-gray)] text-sm">Horizontal Layout</span>
+                            <span className="ml-auto bg-[var(--color-hover-bg)] text-[var(--color-text-muted)] text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
                                 📎 2
                             </span>
                         </div>
                         <div className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-orange-400"></span>
-                            <span className="text-gray-600 text-sm">Invoice Generator</span>
+                            <span className="w-2 h-2 rounded-full bg-[var(--color-warning)]"></span>
+                            <span className="text-[var(--color-text-gray)] text-sm">Invoice Generator</span>
                         </div>
                         <div className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-orange-400"></span>
-                            <span className="text-gray-600 text-sm">Package Upgrades</span>
+                            <span className="w-2 h-2 rounded-full bg-[var(--color-warning)]"></span>
+                            <span className="text-[var(--color-text-gray)] text-sm">Package Upgrades</span>
                         </div>
                         <div className="flex items-center gap-3">
-                            <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                            <span className="text-gray-600 text-sm">Figma Auto Layout</span>
+                            <span className="w-2 h-2 rounded-full bg-[var(--color-success)]"></span>
+                            <span className="text-[var(--color-text-gray)] text-sm">Figma Auto Layout</span>
                         </div>
                     </div>
 
                     <div className="mt-6">
-                        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg flex items-center justify-center gap-2 transition-colors">
+                        <button className="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-[var(--color-text-white)] py-2 rounded-lg flex items-center justify-center gap-2 transition-colors">
                             <Plus size={18} />
                             Add task
                         </button>
@@ -288,9 +443,87 @@ const Default = () => {
                         </div>
                     </div>
                 </div>
+
+
+
+            </div>
+
+            {/* Transaction  & Total Income      */}
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                {/* Transactions Card */}
+                <TransactionCard 
+                    allTransactions={transactionsImage1}
+                    successTransactions={transactionsImage2}
+                    pendingTransactions={transactionsImage3}
+                />
+
+                {/* Total Income Card */}
+                <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)]'>
+                    {/* Header */}
+                    <div className='flex justify-between items-center mb-6'>
+                        <h3 className='text-lg font-semibold text-[var(--color-text-black)]'>Total Income</h3>
+                        <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
+                            <MoreVertical size={20} />
+                        </button>
+                    </div>
+
+                    {/* Doughnut Chart */}
+                    <div className='h-[280px] w-full flex justify-center items-center mb-6'>
+                        <div className='w-[260px] h-[260px]' style={{ 
+                            filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))',
+                            transform: 'perspective(500px) rotateX(5deg)',
+                            transition: 'transform 0.3s ease'
+                        }}>
+                            <DoughtnoutChart />
+                        </div>
+                    </div>
+
+                    {/* Legend Grid */}
+                    <div className='grid grid-cols-2 gap-4'>
+                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
+                            <div className='flex items-center gap-2 mb-2'>
+                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-primary)]'></span>
+                                <span className='text-[var(--color-text-gray)] text-sm'>Income</span>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
+                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
+                            </div>
+                        </div>
+                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
+                            <div className='flex items-center gap-2 mb-2'>
+                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-warning)]'></span>
+                                <span className='text-[var(--color-text-gray)] text-sm'>Rent</span>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
+                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
+                            </div>
+                        </div>
+                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
+                            <div className='flex items-center gap-2 mb-2'>
+                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-success)]'></span>
+                                <span className='text-[var(--color-text-gray)] text-sm'>Download</span>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
+                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
+                            </div>
+                        </div>
+                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
+                            <div className='flex items-center gap-2 mb-2'>
+                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-primary-light)]'></span>
+                                <span className='text-[var(--color-text-gray)] text-sm'>Views</span>
+                            </div>
+                            <div className='flex items-center gap-2'>
+                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
+                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
 };
 
-export default Default;

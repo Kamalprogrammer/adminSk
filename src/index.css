@@ -6,6 +6,20 @@
     --color-primary-dark: #3969d1;
     --color-primary-light: #e8f0ff;
 
+    /* Status Colors */
+    --color-success: #22c55e;
+    --color-success-light: #dcfce7;
+    --color-warning: #f97316;
+    --color-warning-light: #fff7ed;
+    --color-danger: #ef4444;
+    --color-danger-light: #fef2f2;
+
+    /* Chart Colors (for stat cards) */
+    --color-chart-blue: #4680ff;
+    --color-chart-orange: #f97316;
+    --color-chart-green: #22c55e;
+    --color-chart-red: #ef4444;
+
     /* Text Colors */
     --color-text-white: #ffffff;
     --color-text-gray: #5f7384;
@@ -13,13 +27,16 @@
     --color-text-muted: #8a9bab;
 
     /* Background Colors */
+    --color-page-bg: #f8fafc;
     --color-section-bg: #ffffff;
     --color-sidebar-bg: #ffffff;
     --color-hover-bg: #f3f6f9;
+    --color-card-hover-bg: #f9fafb;
 
     /* Border Colors */
     --color-border-light: #e8edf2;
 
     /* Gradients */
     --background-image-primary-gradient: linear-gradient(135deg, #3969d1, #4680ff);
+    --background-image-banner-gradient: linear-gradient(to right, #4680ff, #60a5fa);
 }
