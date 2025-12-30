@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     /* Brand Colors */
     --color-primary: #4680ff;
@@ -20,13 +23,13 @@
     --color-chart-green: #22c55e;
     --color-chart-red: #ef4444;
 
-    /* Text Colors */
+    /* Text Colors - Light Mode */
     --color-text-white: #ffffff;
     --color-text-gray: #5f7384;
     --color-text-black: #222c36;
     --color-text-muted: #8a9bab;
 
-    /* Background Colors */
+    /* Background Colors - Light Mode */
     --color-page-bg: #f8fafc;
     --color-section-bg: #ffffff;
     --color-sidebar-bg: #ffffff;
@@ -39,4 +42,32 @@
     /* Gradients */
     --background-image-primary-gradient: linear-gradient(135deg, #3969d1, #4680ff);
     --background-image-banner-gradient: linear-gradient(to right, #4680ff, #60a5fa);
+}
+
+/* Dark Mode Theme Overrides */
+.dark {
+    --color-primary: #5a8eff;
+    --color-primary-dark: #4680ff;
+    --color-primary-light: #1e3a5f;
+
+    /* Status Colors - Dark Mode */
+    --color-success-light: #14532d;
+    --color-warning-light: #431407;
+    --color-danger-light: #450a0a;
+
+    /* Text Colors - Dark Mode */
+    --color-text-white: #ffffff;
+    --color-text-gray: #94a3b8;
+    --color-text-black: #f1f5f9;
+    --color-text-muted: #64748b;
+
+    /* Background Colors - Dark Mode */
+    --color-page-bg: #0f172a;
+    --color-section-bg: #1e293b;
+    --color-sidebar-bg: #1e293b;
+    --color-hover-bg: #334155;
+    --color-card-hover-bg: #334155;
+
+    /* Border Colors - Dark Mode */
+    --color-border-light: #334155;
 }

@@ -11,7 +11,7 @@ import DoughtnoutChart from '../components/charts/DoughtnoutChart';
 import TransactionCard from '../components/cards/TransactionCard';
 
 export default function Default() {
-    // Helper to get CSS variable value for Chart.js
+
     const getCssVariable = (varName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
     };
@@ -451,7 +451,7 @@ export default function Default() {
             {/* Transaction  & Total Income      */}
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
                 {/* Transactions Card */}
-                <TransactionCard 
+                <TransactionCard
                     allTransactions={transactionsImage1}
                     successTransactions={transactionsImage2}
                     pendingTransactions={transactionsImage3}
@@ -469,7 +469,7 @@ export default function Default() {
 
                     {/* Doughnut Chart */}
                     <div className='h-[280px] w-full flex justify-center items-center mb-6'>
-                        <div className='w-[260px] h-[260px]' style={{ 
+                        <div className='w-[260px] h-[260px]' style={{
                             filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))',
                             transform: 'perspective(500px) rotateX(5deg)',
                             transition: 'transform 0.3s ease'

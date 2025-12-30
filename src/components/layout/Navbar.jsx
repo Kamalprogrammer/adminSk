@@ -38,7 +38,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
         return lang ? lang.flag : '🇺🇸';
     };
 
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (themeDropdownRef.current && !themeDropdownRef.current.contains(event.target)) {
@@ -61,8 +61,40 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
     const handleThemeChange = (themeId) => {
         setCurrentTheme(themeId);
         setThemeDropdownOpen(false);
-        // Add your theme change logic here
+        
+        // Apply dark mode class to html element
+        if (themeId === 'dark') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else if (themeId === 'light') {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        } else {
+            // Default: follow system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            localStorage.setItem('theme', 'default');
+        }
     };
+
+    // Initialize theme on component mount
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setCurrentTheme(savedTheme);
+        
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else if (savedTheme === 'default') {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                document.documentElement.classList.add('dark');
+            }
+        }
+    }, []);
 
     const getCurrentThemeIcon = () => {
         switch (currentTheme) {
@@ -127,7 +159,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                     <button
                         onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
                         className={`p-2.5 rounded-lg transition-all duration-200 transform ${themeDropdownOpen
-                            ? 'bg-white text-primary shadow-lg scale-105'
+                            ? 'bg-white dark:bg-section-bg text-primary shadow-lg scale-105'
                             : 'hover:bg-white/20 hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-text-white'
                             }`}
                     >
@@ -136,14 +168,14 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
 
                     {/* Theme Dropdown */}
                     {themeDropdownOpen && (
-                        <div className="absolute right-0 top-12 bg-white rounded-xl shadow-xl py-2 min-w-[150px] z-50 border border-slate-100">
+                        <div className="absolute right-0 top-12 bg-white dark:bg-section-bg rounded-xl shadow-xl py-2 min-w-[150px] z-50 border border-slate-100 dark:border-border-light">
                             {themeOptions.map((option) => (
                                 <button
                                     key={option.id}
                                     onClick={() => handleThemeChange(option.id)}
                                     className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${currentTheme === option.id
                                         ? 'bg-primary/10 text-primary'
-                                        : 'text-text-black hover:bg-slate-50'
+                                        : 'text-text-black hover:bg-slate-50 dark:hover:bg-hover-bg'
                                         }`}
                                 >
                                     <span className={currentTheme === option.id ? 'text-primary' : 'text-text-gray'}>

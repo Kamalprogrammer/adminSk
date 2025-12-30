@@ -1,23 +1,19 @@
-import { useState } from 'react'
 import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Default from './pages/Default'
+import Analytics from './pages/Analytics'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('default');
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case 'default':
-        return <Default />;
-      default:
-        return <Default />;
-    }
-  };
-
   return (
-    <Layout onNavigate={setCurrentPage}>
-      {renderPage()}
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Navigate to="/dashboard/default" replace />} />
+        <Route path="/dashboard/default" element={<Default />} />
+        <Route path="/dashboard/analytics" element={<Analytics />} />
+        <Route path="/dashboard/finance" element={<Default />} />
+        <Route path="*" element={<Navigate to="/dashboard/default" replace />} />
+      </Routes>
     </Layout>
   )
 }

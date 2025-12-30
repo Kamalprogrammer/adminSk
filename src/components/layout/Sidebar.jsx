@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
   Layout,
@@ -17,7 +18,8 @@ import {
   SlidersHorizontal
 } from 'lucide-react';
 
-const Sidebar = ({ isOpen, onNavigate }) => {
+const Sidebar = ({ isOpen }) => {
+  const location = useLocation();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState({ dashboard: true });
 
@@ -41,9 +43,9 @@ const Sidebar = ({ isOpen, onNavigate }) => {
           badge: 2,
           expandable: true,
           subItems: [
-            { name: 'Default', active: true },
-            { name: 'Analytics', active: false },
-            { name: 'Finance', active: false },
+            { name: 'Default', path: '/dashboard/default' },
+            { name: 'Analytics', path: '/dashboard/analytics' },
+            { name: 'Finance', path: '/dashboard/finance' },
           ]
         },
         {
@@ -209,23 +211,26 @@ const Sidebar = ({ isOpen, onNavigate }) => {
                   {/* Sub Items */}
                   <div className={`overflow-hidden transition-all duration-300 ease-in-out ${item.expandable && item.subItems.length > 0 && expandedMenus[item.key] ? 'max-h-48 opacity-100 ml-6 mt-1' : 'max-h-0 opacity-0 ml-6'}`}>
                     <div className="space-y-1">
-                      {item.subItems.map((subItem, subIndex) => (
-                        <div
-                          key={subIndex}
-                          onClick={() => onNavigate && onNavigate(subItem.name.toLowerCase())}
-                          className={`
-                            flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer 
-                            transition-all duration-200 transform hover:translate-x-1
-                            ${subItem.active
-                              ? 'text-primary'
-                              : 'text-text-gray hover:text-text-black hover:bg-hover-bg/50'
-                            }
-                          `}
-                        >
-                          <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${subItem.active ? 'bg-primary scale-125' : 'bg-text-muted'}`} />
-                          <span className="text-sm font-medium">{subItem.name}</span>
-                        </div>
-                      ))}
+                      {item.subItems.map((subItem, subIndex) => {
+                        const isActive = location.pathname === subItem.path;
+                        return (
+                          <NavLink
+                            key={subIndex}
+                            to={subItem.path}
+                            className={`
+                              flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer 
+                              transition-all duration-200 transform hover:translate-x-1
+                              ${isActive
+                                ? 'text-primary'
+                                : 'text-text-gray hover:text-text-black hover:bg-hover-bg/50'
+                              }
+                            `}
+                          >
+                            <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${isActive ? 'bg-primary scale-125' : 'bg-text-muted'}`} />
+                            <span className="text-sm font-medium">{subItem.name}</span>
+                          </NavLink>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
