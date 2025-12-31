@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Default from './pages/Default'
 import Analytics from './pages/Analytics'
+import Notification from './components/Notification'
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/dashboard/finance" element={<Default />} />
         <Route path="*" element={<Navigate to="/dashboard/default" replace />} />
       </Routes>
+
+      {/* <Notification/> */}
     </Layout>
   )
 }

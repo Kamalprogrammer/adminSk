@@ -10,7 +10,7 @@ import {
     Zap,
     User
 } from 'lucide-react';
-
+import Notification from '../Notification';
 const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
     const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
     const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -18,6 +18,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
     const [currentLang, setCurrentLang] = useState('en');
     const themeDropdownRef = useRef(null);
     const langDropdownRef = useRef(null);
+    const [notificationIsOpen, setnotificationIsOpen] = useState(false);
 
     // Language options
     const languageOptions = [
@@ -61,7 +62,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
     const handleThemeChange = (themeId) => {
         setCurrentTheme(themeId);
         setThemeDropdownOpen(false);
-        
+
         // Apply dark mode class to html element
         if (themeId === 'dark') {
             document.documentElement.classList.add('dark');
@@ -85,7 +86,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') || 'light';
         setCurrentTheme(savedTheme);
-        
+
         if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark');
         } else if (savedTheme === 'default') {
@@ -104,6 +105,11 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
         }
     };
 
+
+    const handleNotification = () => {
+        setnotificationIsOpen((prev) => !prev)
+        console.log("Notification Status: ", notificationIsOpen)
+    }
     return (
         <header className="bg-primary h-16 flex items-center justify-between px-6 shadow-md">
             {/* Left Section */}
@@ -232,11 +238,17 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
 
                 {/* Notifications */}
                 <button className="relative p-2.5 rounded-lg transition-all duration-200 transform hover:bg-white/20 hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-text-white">
-                    <Bell size={20} />
+                    <Bell size={20} onClick={handleNotification} />
+
                     <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center font-bold shadow-md">
                         3
                     </span>
                 </button>
+
+                {notificationIsOpen && (<div className='absolute z-99 top-20 right-20 w-[25rem] border-[.1rem] border-[var(--color-border-light)] rounded-xl'>
+                    <Notification />
+                </div>
+                )}
 
                 {/* User Avatar */}
                 <button className="ml-2 w-9 h-9 rounded-full overflow-hidden border-2 border-white/30 transition-all duration-200 transform hover:border-white hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/30">

@@ -63,7 +63,7 @@ const LineChart = ({
                 label,
                 data: chartData || [],
                 fill: true,
-                backgroundColor: (context) => {
+                backgroundColor: (context) => {     
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, 300);
                     const startColor = color.startsWith('#') ? hexToRgba(color, 0.2) : color;

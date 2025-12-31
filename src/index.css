@@ -3,6 +3,11 @@
 /* Enable class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
+
+body {
+    scroll-behavior: smooth;
+}
+
 @theme {
     /* Brand Colors */
     --color-primary: #4680ff;
