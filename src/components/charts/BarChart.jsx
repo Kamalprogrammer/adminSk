@@ -67,7 +67,7 @@ const BarChart = ({ data = [], color = "#4f46e5" }) => {
     };
 
     return (
-        <div className="w-full h-16"> {/* Fixed height for the mini chart */}
+        <div className="w-full h-16"> 
             <Bar data={chartData} options={options} />
         </div>
     );

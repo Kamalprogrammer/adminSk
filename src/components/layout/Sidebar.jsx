@@ -18,7 +18,7 @@ import {
   SlidersHorizontal
 } from 'lucide-react';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [expandedMenus, setExpandedMenus] = useState({ dashboard: true });
@@ -106,18 +106,30 @@ const Sidebar = ({ isOpen }) => {
   ];
 
   return (
-    <aside
-      className={`
-        bg-sidebar-bg h-screen transition-all duration-300 ease-in-out relative
-        ${isOpen ? 'w-72' : 'w-0 overflow-hidden'}
-        border-r border-border-light
-      `}
-    >
-      {/* Blue accent stripe on right edge */}
-      <div className="absolute right-0 top-0 w-1 h-full bg-primary" />
+    <>
+      {/* Backdrop overlay with blur effect - only on mobile/tablet */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+          onClick={onClose}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside
+        className={`
+          fixed lg:relative z-50 lg:z-auto
+          bg-sidebar-bg h-screen transition-all duration-300 ease-in-out 
+          ${isOpen ? 'w-60' : 'w-0 overflow-hidden'}
+          border-r border-border-light
+        `}
+      >
+        {/* Blue accent stripe on right edge */}
+        <div className="absolute right-0 top-0 w-1 h-full bg-primary" />
 
       {/* Scrollable content */}
-      <div className={`h-full overflow-y-auto pb-4 ${!isOpen && 'hidden'}`}>
+      <div className={`h-full overflow-y-auto pb-4 scrollbar-hide ${!isOpen && 'hidden'}`}>
 
         {/* Profile Section */}
         <div className="p-4">
@@ -126,7 +138,7 @@ const Sidebar = ({ isOpen }) => {
             onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
           >
             <div className="flex items-center gap-3">
-              {/* Avatar */}
+
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center overflow-hidden border-2 border-primary/20">
                 <User size={24} className="text-text-white" />
               </div>
@@ -160,6 +172,10 @@ const Sidebar = ({ isOpen }) => {
             </div>
           </div>
         </div>
+
+
+
+
 
         {/* Navigation Sections */}
         {navigationSections.map((section, sectionIndex) => (
@@ -240,6 +256,7 @@ const Sidebar = ({ isOpen }) => {
         ))}
       </div>
     </aside>
+    </>
   );
 };
 

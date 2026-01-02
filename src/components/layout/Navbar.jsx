@@ -114,10 +114,6 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
         <header className="bg-primary h-16 flex items-center justify-between px-6 shadow-md">
             {/* Left Section */}
             <div className="flex items-center gap-4">
-                {/* Version Badge */}
-                <span className="text-xs bg-white/20 text-text-white px-2 py-1 rounded-md font-medium">
-                    v8.6.2
-                </span>
 
                 {/* Animated Hamburger Menu Button */}
                 <button
@@ -201,8 +197,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                         className={`p-2.5 rounded-lg transition-all duration-200 transform flex items-center gap-1 ${langDropdownOpen
                             ? 'bg-white text-primary shadow-lg scale-105'
                             : 'hover:bg-white/20 hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-text-white'
-                            }`}
-                    >
+                            }`}>
                         <Languages size={20} />
                     </button>
 
@@ -216,8 +211,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                                     className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${currentLang === option.id
                                         ? 'bg-primary/10 text-primary'
                                         : 'text-text-black hover:bg-slate-50'
-                                        }`}
-                                >
+                                        }`}>
                                     <span className="text-lg">{option.flag}</span>
                                     <span className="font-medium text-sm">{option.label}</span>
                                 </button>
@@ -226,7 +220,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                     )}
                 </div>
 
-                {/* Settings */}
+               
                 <button className="p-2.5 rounded-lg transition-all duration-200 transform hover:bg-white/20 hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-text-white">
                     <Settings size={20} />
                 </button>
@@ -250,7 +244,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                 </div>
                 )}
 
-                {/* User Avatar */}
+            
                 <button className="ml-2 w-9 h-9 rounded-full overflow-hidden border-2 border-white/30 transition-all duration-200 transform hover:border-white hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/30">
                     <div className="w-full h-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
                         <User size={18} className="text-white" />

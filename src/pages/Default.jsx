@@ -213,32 +213,7 @@ export default function Default() {
 
     return (
         <div className="p-6 space-y-6 bg-[var(--color-page-bg)] min-h-screen">
-            {/* Banner Section */}
-            <div className="relative overflow-hidden rounded-2xl bg-[image:var(--background-image-banner-gradient)] p-8 text-[var(--color-text-white)] shadow-lg">
-                <div className="relative z-10 max-w-2xl">
-                    <h1 className="text-3xl font-bold mb-2">Explore Redesigned Able Pro</h1>
-                    <p className="text-blue-100 mb-6 text-sm opacity-90">
-                        The Brand new User Interface with power of Bootstrap Components.
-                        Explore the Endless possibilities with Able Pro.
-                    </p>
-                    <button className="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors border border-white/30 backdrop-blur-sm">
-                        Download
-                    </button>
-                </div>
-
-                {/* Decorative Circles/Rocket Placeholder */}
-                <div className="absolute right-0 top-0 h-full w-1/3 flex items-center justify-center">
-                    {/* Using a Rocket icon as a placeholder for the 3D rocket image */}
-                    <div className="relative">
-                        <div className="absolute -inset-4 bg-white/20 rounded-full blur-xl"></div>
-                        <Rocket size={120} className="text-white/90 transform rotate-45 drop-shadow-lg" />
-                    </div>
-                </div>
-
-                {/* Background decoration */}
-                <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
-            </div>
+            
 
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -307,7 +282,7 @@ export default function Default() {
                 <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)] flex flex-col h-full relative'>
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-lg font-semibold text-[var(--color-text-black)]">
-                            <span className="text-[var(--color-primary)]">Project</span> - Able Pro
+                            <span className="text-[var(--color-primary)]">Update</span> - Now More easy to Use
                         </h3>
                     </div>
 

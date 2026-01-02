@@ -48,9 +48,8 @@ const TransactionCard = ({ allTransactions, successTransactions, pendingTransact
                     <button
                         key={key}
                         onClick={() => setActiveTab(key)}
-                        className={`pb-3 text-sm font-medium transition-colors relative ${
-                            activeTab === key ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]'
-                        }`}
+                        className={`pb-3 text-sm font-medium transition-colors relative ${activeTab === key ? 'text-[var(--color-primary)]' : 'text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]'
+                            }`}
                     >
                         {label}
                         {activeTab === key && (
@@ -69,7 +68,7 @@ const TransactionCard = ({ allTransactions, successTransactions, pendingTransact
                             className='flex justify-between items-center py-4 border-b border-[var(--color-border-light)] hover:bg-[var(--color-hover-bg)] transition-colors rounded-lg px-2 cursor-pointer'
                             key={id}
                         >
-                            <div className='flex items-center gap-4'>
+                            {/* <div className='flex items-center gap-4'>
                                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-semibold ${getShortBgColor(short)}`}>
                                     {short}
                                 </div>
@@ -84,7 +83,7 @@ const TransactionCard = ({ allTransactions, successTransactions, pendingTransact
                                     <span>{icon}</span>
                                     {Math.abs(changePercent)}%
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
                     );
                 })}

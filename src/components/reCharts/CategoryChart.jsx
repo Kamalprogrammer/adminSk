@@ -1,43 +1,50 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList, ResponsiveContainer } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
+
 
 // #region Sample data
 const data = [
     {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
+        name: 'Feb',
+        NetRevenue: 40,
+        NetProfit: 24,
+        amt: 24,
     },
     {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
+        name: 'March',
+        NetRevenue: 30,
+        NetProfit: 13,
+        amt: 22,
     },
     {
-        name: 'Page C',
-        uv: 2000,
-        pv: 8,
-        amt: 2290,
+        name: 'Apr',
+        NetRevenue: 20,
+        NetProfit: 8,
+        amt: 22,
     },
     {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
+        name: 'May',
+        NetRevenue: 27,
+        NetProfit: 38,
+        amt: 20,
     },
     {
-        name: 'Page E',
-        uv: 18,
-        pv: 4800,
-        amt: 2181,
+        name: 'June',
+        NetRevenue: 18,
+        NetProfit: 48,
+        amt: 21,
     },
     {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
+        name: 'July',
+        NetRevenue: 23,
+        NetProfit: 38,
+        amt: 25,
+    },
+    {
+        name: 'Aug',
+        NetRevenue: 23,
+        NetProfit: 38,
+        amt: 25,
     },
 
 
@@ -53,7 +60,7 @@ const renderCustomizedLabel = (props) => {
     const radius = 10;
     return (
         <g>
-            <circle cx={Number(x) + Number(width) / 2} cy={Number(y) - radius} r={radius} fill="#8884d8" />
+            {/* <circle cx={Number(x) + Number(width) / 2} cy={Number(y) - radius} r={radius} fill="#8884d8" /> */}
             <text
                 x={Number(x) + Number(width) / 2}
                 y={Number(y) - radius}
@@ -69,27 +76,28 @@ const renderCustomizedLabel = (props) => {
 
 export default function CategoryChart() {
     return (
-        <BarChart
-            style={{ width: '100%', maxWidth: '700px', maxHeight: '70vh', aspectRatio: 1.618 }}
-            responsive
-            data={data}
-            margin={{
-                top: 25,
-                right: 0,
-                left: 0,
-                bottom: 5,
-            }}
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis width="auto" />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="pv" fill="var(--color-primary)" minPointSize={5}>
-                <LabelList dataKey="name" content={renderCustomizedLabel} />
-            </Bar>
-            <Bar dataKey="uv" fill="var(--color-text-gray)" minPointSize={10} />
-            <RechartsDevtools />
-        </BarChart>
+        <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+                data={data}
+                barCategoryGap="20%"
+                margin={{
+                    top: 25,
+                    right: 0,
+                    left: 0,
+                    bottom: 5,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis width="auto" />
+                <Tooltip />
+                <Legend verticalAlign="top" align="left" wrapperStyle={{ paddingBottom: '20px' }} />
+                <Bar dataKey="NetProfit" fill="var(--color-primary)" minPointSize={5} radius={[8, 8, 0, 0]}>
+                    <LabelList dataKey="name" content={renderCustomizedLabel} />
+                </Bar>
+                <Bar dataKey="NewRevenue" fill="#a2bfff" minPointSize={10} radius={[8, 8, 0, 0]} />
+                <RechartsDevtools />
+            </BarChart>
+        </ResponsiveContainer>
     );
 };
