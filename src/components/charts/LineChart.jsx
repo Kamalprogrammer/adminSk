@@ -122,6 +122,7 @@ const LineChart = ({
                 min: min,
                 max: max,
                 grid: {
+                    display: false,
                     borderDash: [4, 4],
                     color: borderColorLight,
                 },

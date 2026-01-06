@@ -29,7 +29,7 @@ const RangedStackedBarChart = ({ isAnimationActive = true }) => (
         {/* <YAxis width="auto" /> */}
         <Tooltip />
         <BarStack>
-            <Bar dataKey="value1" maxBarSize={15} fill="#e99b26" isAnimationActive={isAnimationActive} radius={[25, 25, 25, 25]} />
+            <Bar dataKey="value1" maxBarSize={10} fill="#e99b26" isAnimationActive={isAnimationActive} radius={[25, 25, 25, 25]} />
         </BarStack>
         {/* <RechartsDevtools /> */}
     </BarChart>

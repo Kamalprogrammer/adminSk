@@ -65,7 +65,7 @@ const data = [
 export default function Example() {
   return (
     <LineChart
-      style={{ width: '100%', maxWidth: '700px', height: '100%', maxHeight: '70vh', aspectRatio: 1.618 }}
+      style={{ width: '100%', maxWidth: '700px', height: '100%', aspectRatio: 1.618 }}
       responsive
       data={data}
       margin={{
@@ -74,6 +74,7 @@ export default function Example() {
         left: 0,
         bottom: 0,
       }}
+      className='w-full h-30 sm:h-full '
     >
       {/* <CartesianGrid strokeDasharray="3 3" /> */}
       <XAxis dataKey="name" />

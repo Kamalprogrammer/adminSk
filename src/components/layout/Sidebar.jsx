@@ -43,9 +43,9 @@ const Sidebar = ({ isOpen, onClose }) => {
           badge: 2,
           expandable: true,
           subItems: [
-            { name: 'Default', path: '/dashboard/default' },
-            { name: 'Analytics', path: '/dashboard/analytics' },
-            { name: 'Finance', path: '/dashboard/finance' },
+            { name: 'Default', path: '/default' },
+            { name: 'Analytics', path: '/analytics' },
+            { name: 'Finance', path: '/finance' },
           ]
         },
         {
@@ -121,7 +121,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         className={`
           fixed lg:relative z-50 lg:z-auto
           bg-sidebar-bg h-screen transition-all duration-300 ease-in-out 
-          ${isOpen ? 'w-60' : 'w-0 overflow-hidden'}
+          ${isOpen ? 'w-80' : 'w-0 overflow-hidden'}
           border-r border-border-light
         `}
       >
@@ -172,10 +172,6 @@ const Sidebar = ({ isOpen, onClose }) => {
             </div>
           </div>
         </div>
-
-
-
-
 
         {/* Navigation Sections */}
         {navigationSections.map((section, sectionIndex) => (

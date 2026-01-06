@@ -9,6 +9,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import avatar from "../../public/asset/images/avatar.jpg"
 import DoughtnoutChart from '../components/charts/DoughtnoutChart';
 import TransactionCard from '../components/cards/TransactionCard';
+import DefaultTransaction from '../components/DefaultTransaction';
 
 export default function Default() {
 
@@ -212,9 +213,7 @@ export default function Default() {
     ];
 
     return (
-        <div className="p-6 space-y-6 bg-[var(--color-page-bg)] min-h-screen">
-            
-
+        <div className="space-y-6 bg-[var(--color-page-bg)] min-h-screen">
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat) => (
@@ -248,20 +247,20 @@ export default function Default() {
             </div>
 
             {/* Chart & Project Section  */}
-            <div className='grid lg:grid-cols-[70%_30%] grid-cols-1 gap-6'>
+            <div className='grid grid-cols-1 w-full lg:grid-cols-[75%_23%]  gap-5 lg:gap-[2%] bg-[var(--color-page-bg)] '>
                 {/* Left Column: Repeat Customer Rate Chart */}
-                <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)]'>
-                    <div className="flex justify-between items-center mb-6">
+                <div className='bg-[var(--color-section-bg)] p-3  rounded-xl md:p-6 shadow-sm border border-[var(--color-border-light)]'>
+                    <div className="flex justify-between items-center mb-2 lg:mb-6">
                         <h3 className="text-lg font-semibold text-[var(--color-text-black)]">Repeat customer rate</h3>
                         <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
                             <MoreVertical size={20} />
                         </button>
                     </div>
                     <div className="flex items-center justify-end gap-2 mb-4">
-                        <span className="text-lg font-bold text-[var(--color-text-black)]">5.44%</span>
-                        <span className="bg-[var(--color-success)] text-[var(--color-text-white)] text-xs px-2 py-0.5 rounded-full font-medium">+2.6%</span>
+                        <span className="text-[1rem] sm:text-lg font-bold text-[var(--color-text-black)]">5.44%</span>
+                        <span className="bg-[var(--color-success)] text-[var(--color-text-white)] text-[1rem] sm:text-lg px-2 py-0.5 rounded-full font-medium">+2.6%</span>
                     </div>
-                    <div className="h-[300px] w-full">
+                    <div className="h-[10rem] sm:h-[15rem] lg:h-[18rem] w-full">
                         <LineChart
                             labels={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
                             data={[30, 60, 40, 70, 30, 60, 40, 70, 10, 40, 87, 12]}
@@ -278,7 +277,7 @@ export default function Default() {
                     </div>
                 </div>
 
-                {/* Right Column: Project - Able Pro */}
+                {/* Right Column: */}
                 <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)] flex flex-col h-full relative'>
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="text-lg font-semibold text-[var(--color-text-black)]">
@@ -327,21 +326,21 @@ export default function Default() {
                 </div>
 
                 {/* Project Overview : ProjectOverview + Able Pro */}
-
-                <div className='w-[77vw] m-auto grid grid-cols-1 lg:grid-cols-[67%_29%] gap-[2q%] '>
-                    <div className="overview w-full bg-[var(--color-text-white)] border-[.1rem] border-[var(--color-border-light)] rounded-xl">
-                        <div className='flex justify-between items-center px-2'>
-                            <p className='font-semibold text-[1.2rem]'>Project Overview</p>
-                            <BsThreeDots className='font-semibold text-[1.2rem]' />
+                <div className='w-full lg:w-[77vw] grid grid-cols-1 lg:grid-cols-[75.5%_23%] md:gap-[2%] bg-[var(--color-page-bg)]'>
+                    <div className="overview w-full bg-[var(--color-section-bg)] border border-[var(--color-border-light)] rounded-2xl p-6 shadow-sm">
+                        <div className='flex justify-between items-center mb-6'>
+                            <p className='font-semibold text-lg text-[var(--color-text-black)]'>Project Overview</p>
+                            <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
+                                <BsThreeDots size={20} />
+                            </button>
                         </div>
-                        <div className="graph flex justify-between items-center ">
-                            <div className="first flex justify-between items-center p-2">
+                        <div className="graph grid grid-cols-1 w-full md:grid-cols-3 gap-2 md:gap-4">
+                            <div className="grid grid-cols-[30%_65%] w-full items-center">
                                 <div>
-                                    <div className=''>
-                                        <p className='text-[var(--color-text-gray)]'>Total Task</p>
-                                        <p className='font-bold'>36,548</p>
-                                    </div>
+                                    <p className='text-[var(--color-text-gray)] text-sm mb-2'>Total Task</p>
+                                    <p className='font-bold text-lg text-[var(--color-text-black)]'>36,548</p>
                                 </div>
+
                                 <div>
                                     <LineChart
                                         labels={[1, 2, 1, 4, 2, 1, 7, 1]}
@@ -351,20 +350,14 @@ export default function Default() {
                                         showYAxis={false}
                                         showXAxis={false}
                                         lineColor="#3b82f6"
-                                        width='10rem'
-                                        height='4rem'
-
-                                    />
-
+                                        width='100%'
+                                        height='4rem' />
                                 </div>
-
                             </div>
-                            <div className="Second flex p-2">
+                            <div className="second grid grid-cols-[30%_65%] w-full items-center">
                                 <div>
-                                    <div>
-                                        <p className='text-[var(--color-text-gray)]'>Total Task</p>
-                                        <p className='font-bold'>36,548</p>
-                                    </div>
+                                    <p className='text-[var(--color-text-gray)] text-sm mb-2'>Completed</p>
+                                    <p className='font-bold text-lg text-[var(--color-text-black)]'>24,586</p>
                                 </div>
                                 <div>
                                     <LineChart
@@ -374,130 +367,51 @@ export default function Default() {
                                         max={10}
                                         showYAxis={false}
                                         showXAxis={false}
-                                        lineColor="red"
-                                        width='10rem'
-                                        height='4rem'
-
-                                    />
-
+                                        lineColor="#ef4444"
+                                        width='100%'
+                                        height='4rem' />
                                 </div>
-
                             </div>
-                            <button className='flex bg-[var(--color-primary-dark)] items-center p-0 text-white px-20 gap-2 mr-3 h-[3rem] rounded-full'>
-                                <GoPlus /> <p className='font-semibold '>Add project</p>
+                            <button className='flex items-center justify-center h-[3rem] gap-2 bg-[var(--color-primary-dark)] hover:bg-[var(--color-primary)] text-[var(--color-text-white)] px-4 md:px-6 py-3 rounded-full font-semibold transition-colors flex-shrink-0'>
+                                <GoPlus size={18} /> Add project
                             </button>
                         </div>
-
                     </div>
-                    <div className='w-full border-[.1rem] border-[var(--color-border-light)] flex  flex-col justify-between items-center bg-[var(--color-text-white)] rounded-xl py-2 gap-5'>
-                        <div className='flex justify-between items-center w-full px-5'>
+                    <div className='w-full border border-[var(--color-border-light)] flex flex-col justify-between bg-[var(--color-section-bg)] rounded-2xl p-6 shadow-sm gap-4'>
+                        <div className='flex justify-between items-center'>
                             <div>
-                                <div className="icon py-2 px-4 rounded-xl text-[var(--color-primary)] bg-[var(--color-primary-light)]">@</div>
+                                <div className="icon py-2 px-4 rounded-lg text-[var(--color-primary)] bg-[var(--color-primary-light)] font-semibold">@</div>
                             </div>
                             <div className="">
-                                <p className='font-bold text-[1rem]'>Somnath</p>
-                                <p className='font-[.1rem]'>@shankarPrabhu</p>
-
+                                <p className='font-bold text-[var(--color-text-black)] text-sm'>Somnath</p>
+                                <p className='text-[var(--color-text-gray)] text-xs'>@shankarPrabhu</p>
                             </div>
-                            <div className="icon">
-                                <BsThreeDotsVertical />
-                            </div>
+                            <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
+                                <BsThreeDotsVertical size={18} />
+                            </button>
                         </div>
-                        <div className='flex  justify-between w-full px-5'>
+                        <div className='flex justify-between items-center'>
                             <div className="logos flex">
-                                <img src={avatar} alt="" className='-mr-5 hover:z-20 w-10 h-10 border-2 border-black  rounded-full border-[.1rem] border-white' />
-                                <img src={avatar} alt="" className='-mr-5 hover:z-20 w-10 h-10  rounded-full border-[.1rem] border-white' />
-                                <img src={avatar} alt="" className='-mr-5 hover:z-20 w-10 h-10 rounded-full border-[.1rem] border-white' />
-                                <img src={avatar} alt="" className='-mr-5 hover:z-20 w-10 h-10 rounded-full border-[.1rem] border-white' />
-                                <img src={avatar} alt="" className='-mr-5 hover:z-20 w-10 h-10 rounded-full border-[.1rem] border-white' />
+                                <img src={avatar} alt="" className='-mr-3 hover:z-20 w-10 h-10 rounded-full border-2 border-[var(--color-border-light)]' />
+                                <img src={avatar} alt="" className='-mr-3 hover:z-20 w-10 h-10 rounded-full border-2 border-[var(--color-border-light)]' />
+                                <img src={avatar} alt="" className='-mr-3 hover:z-20 w-10 h-10 rounded-full border-2 border-[var(--color-border-light)]' />
+                                <img src={avatar} alt="" className='-mr-3 hover:z-20 w-10 h-10 rounded-full border-2 border-[var(--color-border-light)]' />
+                                <img src={avatar} alt="" className='-mr-3 hover:z-20 w-10 h-10 rounded-full border-2 border-[var(--color-border-light)]' />
                             </div>
-                            <div className='py-2 px-3 bg-[var(--color-primary)] flex justify-center items-center text-[var(--color-text-white)] font-bold rounded-full'>
-                                <GoPlus />
-
-                            </div>
+                            <button className='py-2 px-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] flex justify-center items-center text-[var(--color-text-white)] font-bold rounded-full transition-colors'>
+                                <GoPlus size={18} />
+                            </button>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
 
             {/* Transaction  & Total Income      */}
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-                {/* Transactions Card */}
-                <TransactionCard
-                    allTransactions={transactionsImage1}
-                    successTransactions={transactionsImage2}
-                    pendingTransactions={transactionsImage3}
-                />
-
-                {/* Total Income Card */}
-                <div className='bg-[var(--color-section-bg)] rounded-xl p-6 shadow-sm border border-[var(--color-border-light)]'>
-                    {/* Header */}
-                    <div className='flex justify-between items-center mb-6'>
-                        <h3 className='text-lg font-semibold text-[var(--color-text-black)]'>Total Income</h3>
-                        <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
-                            <MoreVertical size={20} />
-                        </button>
-                    </div>
-
-                    {/* Doughnut Chart */}
-                    <div className='h-[280px] w-full flex justify-center items-center mb-6'>
-                        <div className='w-[260px] h-[260px]' style={{
-                            filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.1))',
-                            transform: 'perspective(500px) rotateX(5deg)',
-                            transition: 'transform 0.3s ease'
-                        }}>
-                            <DoughtnoutChart />
-                        </div>
-                    </div>
-
-                    {/* Legend Grid */}
-                    <div className='grid grid-cols-2 gap-4'>
-                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
-                            <div className='flex items-center gap-2 mb-2'>
-                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-primary)]'></span>
-                                <span className='text-[var(--color-text-gray)] text-sm'>Income</span>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
-                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
-                            </div>
-                        </div>
-                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
-                            <div className='flex items-center gap-2 mb-2'>
-                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-warning)]'></span>
-                                <span className='text-[var(--color-text-gray)] text-sm'>Rent</span>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
-                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
-                            </div>
-                        </div>
-                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
-                            <div className='flex items-center gap-2 mb-2'>
-                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-success)]'></span>
-                                <span className='text-[var(--color-text-gray)] text-sm'>Download</span>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
-                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
-                            </div>
-                        </div>
-                        <div className='p-4 bg-[var(--color-card-hover-bg)] rounded-xl hover:shadow-md transition-shadow'>
-                            <div className='flex items-center gap-2 mb-2'>
-                                <span className='w-2.5 h-2.5 rounded-full bg-[var(--color-primary-light)]'></span>
-                                <span className='text-[var(--color-text-gray)] text-sm'>Views</span>
-                            </div>
-                            <div className='flex items-center gap-2'>
-                                <span className='font-bold text-[var(--color-text-black)]'>$23,876</span>
-                                <span className='text-xs text-[var(--color-text-muted)]'>↗ +$763,43</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <DefaultTransaction
+                allTransactions={transactionsImage1}
+                successTransactions={transactionsImage2}
+                pendingTransactions={transactionsImage3}
+            />
         </div>
     );
 };

@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="flex h-screen bg-page-bg transition-colors duration-300">  
+    <div className="flex h-screen bg-page-bg transition-colors duration-300">
 
       <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
@@ -23,8 +23,14 @@ const Layout = ({ children }) => {
         <Navbar onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
 
         <main className="flex-1 overflow-y-auto p-6 bg-page-bg transition-colors duration-300">
+          <div className='py-5' >
+
             <Breadcrumbs />
-          {children}
+          </div>
+          <div>
+            {children}
+
+          </div>
         </main>
       </div>
     </div>
