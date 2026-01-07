@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Wallet, FileText, Calendar, Download, MoreVertical, Rocket, Plus, ShoppingCart, PlusIcon } from 'lucide-react';
 import BarChart from '../components/charts/BarChart';
 import LineChart from '../components/charts/LineChart';
@@ -11,7 +11,11 @@ import DoughtnoutChart from '../components/charts/DoughtnoutChart';
 import TransactionCard from '../components/cards/TransactionCard';
 import DefaultTransaction from '../components/DefaultTransaction';
 
+
+
 export default function Default() {
+    const [iconsClicked, setIconClicked] = useState(null);
+    const [chartMenuOpen, setChartMenuOpen] = useState(false);
 
     const getCssVariable = (varName) => {
         return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -212,6 +216,15 @@ export default function Default() {
         },
     ];
 
+    const handleMoreOption = (id) => {
+        // Toggle: if clicking the same card, close it; otherwise open the new one
+        setIconClicked((prev) => prev === id ? null : id)
+    }
+
+    const handleMoreOptionChart = () => {
+        setChartMenuOpen((prev) => !prev)
+    }
+
     return (
         <div className="space-y-6 bg-[var(--color-page-bg)] min-h-screen">
             {/* Stats Grid */}
@@ -219,19 +232,28 @@ export default function Default() {
                 {stats.map((stat) => (
                     <div key={stat.id} className="bg-[var(--color-section-bg)] rounded-xl p-5 shadow-sm border border-[var(--color-border-light)] hover:shadow-md transition-shadow">
                         <div className="flex justify-between items-start mb-4">
-                            <div className="flex items-center gap-3">
+                            <div className=" flex items-center gap-3">
                                 <div className={`p-2.5 rounded-lg ${stat.iconBg}`}>
                                     {stat.icon}
                                 </div>
                                 <span className="font-medium text-[var(--color-text-gray)] text-sm">{stat.title}</span>
                             </div>
-                            <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
-                                <MoreVertical size={18} />
+                            <button className="relative text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)] ">
+                                <MoreVertical size={18} onClick={() => handleMoreOption(stat.id)} />
+                                {iconsClicked === stat.id && (
+                                    <div className='bg-[var(--color-section-bg)] border border-[var(--color-border-light)] shadow-lg w-[10rem] sm:w-[11rem] md:w-[12rem] py-2 px-1 absolute z-[100] top-6 right-0 sm:-right-2 md:-right-4 rounded-lg'>
+                                        <div className='w-full flex flex-col gap-0.5'>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Today</button>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Weekly</button>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Monthly</button>
+                                        </div>
+                                    </div>
+                                )}
                             </button>
                         </div>
 
-                        <div className="flex items-end justify-between gap-4">
-                            <div className="w-1/2">
+                        <div className="grid grid-cols-[70%_30%] items-end justify-between">
+                            <div className="h-[8rem] md:h-[7rem] lg:h-[5rem]">
                                 <BarChart data={stat.chartData} color={getCssVariable(stat.chartColorVar)} />
                             </div>
                             <div className="text-right">
@@ -252,8 +274,18 @@ export default function Default() {
                 <div className='bg-[var(--color-section-bg)] p-3  rounded-xl md:p-6 shadow-sm border border-[var(--color-border-light)]'>
                     <div className="flex justify-between items-center mb-2 lg:mb-6">
                         <h3 className="text-lg font-semibold text-[var(--color-text-black)]">Repeat customer rate</h3>
-                        <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
-                            <MoreVertical size={20} />
+                        <button className="relative text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
+                            <MoreVertical size={20} onClick={handleMoreOptionChart}/>
+
+                             {chartMenuOpen && (
+                                    <div className='bg-[var(--color-section-bg)] border border-[var(--color-border-light)] shadow-lg w-[10rem] sm:w-[11rem] md:w-[12rem] py-2 px-1 absolute z-[100] top-6 right-0 sm:-right-2 md:-right-4 rounded-lg'>
+                                        <div className='w-full flex flex-col gap-0.5'>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Today</button>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Weekly</button>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Monthly</button>
+                                        </div>
+                                    </div>
+                                )}
                         </button>
                     </div>
                     <div className="flex items-center justify-end gap-2 mb-4">
@@ -381,7 +413,7 @@ export default function Default() {
                         <div className='flex justify-between items-center'>
                             <div>
                                 <div className="icon py-2 px-4 rounded-lg text-[var(--color-primary)] bg-[var(--color-primary-light)] font-semibold">@</div>
-                            </div>
+                            </div>3
                             <div className="">
                                 <p className='font-bold text-[var(--color-text-black)] text-sm'>Somnath</p>
                                 <p className='text-[var(--color-text-gray)] text-xs'>@shankarPrabhu</p>
@@ -412,6 +444,8 @@ export default function Default() {
                 successTransactions={transactionsImage2}
                 pendingTransactions={transactionsImage3}
             />
+
+
         </div>
     );
 };

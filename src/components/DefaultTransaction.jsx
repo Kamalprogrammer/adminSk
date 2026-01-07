@@ -2,12 +2,20 @@ import React from 'react';
 import { MoreVertical } from 'lucide-react';
 import DoughtnoutChart from './charts/DoughtnoutChart';
 import TransactionCard from './cards/TransactionCard';
+import { useState } from 'react';
 
 export default function DefaultTransaction({
     allTransactions,
     successTransactions,
     pendingTransactions
 }) {
+
+    const [iconsClicked, setIconClicked] = useState(null);
+
+    const handleMoreOptionChart = () => {
+        setIconClicked((prev) => !prev)
+    }
+
     return (
         <div className='grid grid-cols-1 lg:grid-cols-[50%_48%] gap-5 lg:gap-[2%] bg-[var(--color-page-bg)]'>
             {/* Transactions Card */}
@@ -22,8 +30,18 @@ export default function DefaultTransaction({
                 {/* Header */}
                 <div className='flex justify-between items-center mb-6'>
                     <h3 className='text-base sm:text-lg font-semibold text-[var(--color-text-black)]'>Total Income</h3>
-                    <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
-                        <MoreVertical size={18} className='sm:w-5 sm:h-5' />
+                    <button className="relative text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
+                        <MoreVertical size={18} className='sm:w-5 sm:h-5' onClick={handleMoreOptionChart} />
+
+                        {iconsClicked && (
+                            <div className='bg-[var(--color-section-bg)] border border-[var(--color-border-light)] shadow-lg w-[10rem] sm:w-[11rem] md:w-[12rem] py-2 px-1 absolute z-[100] top-6 right-0 sm:-right-2 md:-right-4 rounded-lg'>
+                                <div className='w-full flex flex-col gap-0.5'>
+                                    <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Today</button>
+                                    <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Weekly</button>
+                                    <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Monthly</button>
+                                </div>
+                            </div>
+                        )}
                     </button>
                 </div>
 

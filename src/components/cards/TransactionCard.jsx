@@ -3,6 +3,11 @@ import { MoreVertical } from 'lucide-react';
 
 const TransactionCard = ({ allTransactions, successTransactions, pendingTransactions }) => {
     const [activeTab, setActiveTab] = useState('all');
+     const [iconsClicked, setIconClicked] = useState(null);
+
+ const handleMoreOptionChart =()=>{
+    setIconClicked((prev)=>!prev)
+    }
 
     const tabs = [
         { key: 'all', label: 'All Transaction', data: allTransactions },
@@ -37,8 +42,18 @@ const TransactionCard = ({ allTransactions, successTransactions, pendingTransact
             {/* Header */}
             <div className='flex justify-between items-center mb-6'>
                 <h3 className='text-lg font-semibold text-[var(--color-text-black)]'>Transactions</h3>
-                <button className="text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
-                    <MoreVertical size={20} />
+                <button className=" relative text-[var(--color-text-muted)] hover:text-[var(--color-text-gray)]">
+                    <MoreVertical size={20} onClick={handleMoreOptionChart}  />
+                    
+                        {iconsClicked  && (
+                                    <div className='bg-[var(--color-section-bg)] border border-[var(--color-border-light)] shadow-lg w-[10rem] sm:w-[11rem] md:w-[12rem] py-2 px-1 absolute z-[100] top-6 right-0 sm:-right-2 md:-right-4 rounded-lg'>
+                                        <div className='w-full flex flex-col gap-0.5'>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Today</button>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Weekly</button>
+                                            <button className='text-sm sm:text-base px-3 py-2 w-full text-left text-[var(--color-text-black)] hover:bg-[var(--color-hover-bg)] transition-colors rounded font-medium'>Monthly</button>
+                                        </div>
+                                    </div>
+                                )}
                 </button>
             </div>
 
