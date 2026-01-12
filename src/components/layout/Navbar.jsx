@@ -82,7 +82,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
         }
     };
 
-    // Initialize theme on component mount
+   ``
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') || 'light';
         setCurrentTheme(savedTheme);
@@ -108,11 +108,10 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
 
     const handleNotification = () => {
         setnotificationIsOpen((prev) => !prev)
-        console.log("Notification Status: ", notificationIsOpen)
     }
     return (
         <header className="bg-primary h-16 flex items-center justify-between px-6 shadow-md">
-            {/* Left Section */}
+            
             <div className="flex items-center gap-4">
 
                 {/* Animated Hamburger Menu Button */}
@@ -147,16 +146,16 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                     </div>
                 </button>
 
-                {/* Search Bar */}
+              
                 <div className="hidden md:flex items-center bg-white rounded-lg px-4 py-2 w-48 shadow-sm">
                     <Search size={16} className="text-text-gray mr-2" />
                     <span className="text-sm text-text-gray">Ctrl + K</span>
                 </div>
             </div>
 
-            {/* Right Section - Icons */}
+            
             <div className="flex items-center gap-1">
-                {/* Theme Toggle with Dropdown */}
+                
                 <div className="relative" ref={themeDropdownRef}>
                     <button
                         onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
@@ -168,7 +167,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                         {getCurrentThemeIcon()}
                     </button>
 
-                    {/* Theme Dropdown */}
+                    
                     {themeDropdownOpen && (
                         <div className="absolute right-0 top-12 bg-white dark:bg-section-bg rounded-xl shadow-xl py-2 min-w-[150px] z-50 border border-slate-100 dark:border-border-light">
                             {themeOptions.map((option) => (
@@ -190,7 +189,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                     )}
                 </div>
 
-                {/* Language Changer */}
+                
                 <div className="relative" ref={langDropdownRef}>
                     <button
                         onClick={() => setLangDropdownOpen(!langDropdownOpen)}
@@ -201,7 +200,7 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                         <Languages size={20} />
                     </button>
 
-                    {/* Language Dropdown */}
+                    
                     {langDropdownOpen && (
                         <div className="absolute right-0 top-12 bg-white rounded-xl shadow-xl py-2 min-w-[150px] z-50 border border-slate-100">
                             {languageOptions.map((option) => (
@@ -225,12 +224,12 @@ const Navbar = ({ onToggleSidebar, sidebarOpen }) => {
                     <Settings size={20} />
                 </button>
 
-                {/* Lightning / Quick Actions */}
+                
                 <button className="p-2.5 rounded-lg transition-all duration-200 transform hover:bg-white/20 hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-text-white">
                     <Zap size={20} />
                 </button>
 
-                {/* Notifications */}
+                
                 <button className="relative p-2.5 rounded-lg transition-all duration-200 transform hover:bg-white/20 hover:-translate-y-0.5 hover:scale-110 hover:shadow-lg hover:shadow-white/20 text-text-white">
                     <Bell size={20} onClick={handleNotification} />
 

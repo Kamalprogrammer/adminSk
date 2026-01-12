@@ -10,9 +10,9 @@ import { FiMaximize2 } from "react-icons/fi";
 import { LuExternalLink } from "react-icons/lu";
 import ProductOverview from "../components/reCharts/ProductOverview.jsx"
 import { FaPlus } from "react-icons/fa6";
-import phonePay from "../../public/asset/images/logos/phonepay.png"
-import gogolepay from "../../public/asset/images/logos/googlepat.png"
-import paypal from "../../public/asset/images/logos/paypal.png"
+const phonePay = "/asset/images/logos/phonepay.png"
+const gogolepay = "/asset/images/logos/googlepat.png"
+const paypal = "/asset/images/logos/paypal.png"
 import { BsThreeDotsVertical } from "react-icons/bs";
 import AnalyticsTopCard from "../components/AnalyticsTopCard.jsx"
 const BarChartData = [

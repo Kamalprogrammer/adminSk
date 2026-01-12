@@ -17,7 +17,7 @@ export default function AnalyticsTopCard() {
             <div className="w-full grid grid-cols-1 gap-5 md:grid-cols-3 p-3">
 
                 {/* Card 1: New Orders */}
-                <div className="w-full bg-[var(--color-section-bg)] rounded-2xl shadow-sm border border-[var(--color-border-light)] p-5 flex flex-col justify-between min-h-auto transition-all hover:shadow-md">
+                <div className="w-full bg-[var(--color-section-bg)]  rounded-2xl shadow-sm border border-[var(--color-border-light)] p-5 flex flex-col justify-between min-h-auto transition-all hover:shadow-md">
                     <div className="flex items-center justify-between mb-4">
                         <span className="font-medium text-[.9rem] lg:text-[1rem] text-[var(--color-text-black)]">New Orders</span>
                         <div className="relative">
@@ -29,7 +29,7 @@ export default function AnalyticsTopCard() {
                             <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                         </div>
                     </div>
-                    <div className="w-full flex-1 flex items-center justify-center ">
+                    <div className="w-full flex-1 flex items-center justify-center h-[8rem] md:h-[7rem] lg:h-[5rem] ">
                         <BarChart data={BarChartData[0].data} color={barChartColor} />
                     </div>
                     <div className="mt-1 flex flex-col items-center">
@@ -55,7 +55,7 @@ export default function AnalyticsTopCard() {
                             <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                         </div>
                     </div>
-                    <div className="flex-1 flex items-center justify-center">
+                    <div className="flex-1 flex items-center justify-center h-[8rem] md:h-[7rem] lg:h-[5rem]">
                         <LineChart />
                     </div>
                     <div className="mt-6 flex flex-col items-center">
@@ -81,7 +81,7 @@ export default function AnalyticsTopCard() {
                             <svg className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                         </div>
                     </div>
-                    <div className="flex-1 flex items-center justify-center ">
+                    <div className="flex-1 flex items-center justify-center h-[8rem] md:h-[7rem] lg:h-[5rem]">
                         <RangeChart />
                     </div>
                     <div className="flex flex-col items-center">

@@ -18,6 +18,28 @@ body {
     display: none;
 }
 
+/* Hide native select arrow */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* Hide number input spinners */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 @theme {
     /* Brand Colors */
     --color-primary: #4680ff;

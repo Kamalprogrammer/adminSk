@@ -1,7 +1,7 @@
 import { BarChart, XAxis, YAxis, Tooltip, Bar, BarStack } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 
-// #region Sample data
+
 const rangedStackedBarData = [
     { name: 'A', value1: [1, 6] },
     { name: 'B', value1: [3, 7] },
@@ -10,9 +10,10 @@ const rangedStackedBarData = [
     { name: 'E', value1: [4, 7] },
     { name: 'F', value1: [2, 5] },
 ];
-// #endregion
 
 const RangedStackedBarChart = ({ isAnimationActive = true }) => (
+
+
     <BarChart
         style={{ width: '100%', maxWidth: '100%', maxHeight: 'auto', aspectRatio: 1.618 }}
         responsive
@@ -25,13 +26,11 @@ const RangedStackedBarChart = ({ isAnimationActive = true }) => (
             left: 1,
         }}
     >
-        {/* <XAxis dataKey="name" /> */}
-        {/* <YAxis width="auto" /> */}
+     
         <Tooltip />
         <BarStack>
             <Bar dataKey="value1" maxBarSize={10} fill="#e99b26" isAnimationActive={isAnimationActive} radius={[25, 25, 25, 25]} />
         </BarStack>
-        {/* <RechartsDevtools /> */}
     </BarChart>
 );
 
